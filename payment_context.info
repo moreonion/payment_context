@@ -1,0 +1,6 @@
+name = Payment Context
+description = Extends payments handling of contexts to be actually usefull.
+core = 7.x
+
+dependencies[] = payment
+dependencies[] = psr0
