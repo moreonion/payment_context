@@ -41,7 +41,7 @@ function payment_context_entity_load($entities, $type) {
     if (isset($classes[$payment->context])) {
       $payment->contextObj = $classes[$payment->context]::fromContextData($payment->context_data);
     }
-    else {
+    if (!$payment->contextObj) {
       $payment->contextObj = new NullPaymentContext();
     }
   }
