@@ -2,15 +2,22 @@
 
 namespace Drupal\payment_context;
 
+/**
+ * Interface that all payment contexts should implement.
+ */
 interface PaymentContextInterface {
+
   /**
    * Create a payment context from $payment->context_data.
    *
    * @param mixed $data
+   *   The data as returned by from toContextData().
+   *
    * @return object
    *   A payment context object.
    */
   public static function fromContextData($data);
+
   /**
    * Export into a data structure that can be saved in $payment->context_data.
    *
@@ -18,6 +25,7 @@ interface PaymentContextInterface {
    *   Serializable data structure.
    */
   public function toContextData();
+
   /**
    * Get a value from the context.
    *
@@ -25,19 +33,26 @@ interface PaymentContextInterface {
    * not provide a value. Usually those values are used to pre-populate payment
    * forms.
    *
-   * @param $key string
+   * @param string $key
+   *   A string key that we want to have a value for.
+   *
    * @return mixed
    *   Any value.
    */
   public function value($key);
+
   /**
    * Redirect user in a to a given url.
+   *
    * Parameters are the same as for drupal_goto()
    *
-   * @param $path string
-   * @param $options array
+   * @param string $path
+   *   Path as for drupal_goto().
+   * @param array $options
+   *   Options as for drupal_goto().
    */
   public function redirect($path, array $options = array());
+
   /**
    * Return the machine name for this payment context.
    *
@@ -45,4 +60,5 @@ interface PaymentContextInterface {
    * when the payment is loaded.
    */
   public function name();
+
 }
